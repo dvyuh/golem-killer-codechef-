@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2p2i8m886b7t"]
+
+[ext_resource type="PackedScene" uid="uid://ku8rrufijd1d" path="res://scenes/boss.tscn" id="1_3n20u"]
+[ext_resource type="Script" uid="uid://bqkncgcs6o0os" path="res://GameTimer.gd" id="1_673pk"]
+[ext_resource type="PackedScene" uid="uid://cp0ii180esri7" path="res://scenes/player.tscn" id="2_bpcqn"]
+
+[node name="BossRoom" type="Node2D"]
+
+[node name="GameTimer" type="CanvasLayer" parent="."]
+script = ExtResource("1_673pk")
+
+[node name="TimerLabel" type="Label" parent="GameTimer"]
+offset_right = 208.0
+offset_bottom = 61.0
+
+[node name="boss" parent="." instance=ExtResource("1_3n20u")]
+position = Vector2(411, 142)
+scale = Vector2(2, 2)
+
+[node name="player" parent="." instance=ExtResource("2_bpcqn")]
+position = Vector2(407, 258)

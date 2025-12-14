@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://cp0ii180esri7"]
+
+[ext_resource type="Script" uid="uid://b7n8hb3m62wxv" path="res://scenes/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://db81pviwl85bj" path="res://scenes/player_bullet.tscn" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://cjlr8waj6w1pj" path="res://assets/Free 2D Animated Vector Game Character Sprites/Full body animated characters/Char 1/with hands/idle_0.png" id="3_qhqgy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlg0r"]
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhqgy"]
+bg_color = Color(0.019686248, 0.6240013, 0.9999998, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqkch"]
+bg_color = Color(2.117753e-06, 0.72587246, 0.18553513, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
+_data = {
+&"walk": SubResource("Animation_qlg0r")
+}
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_3vyb7")
+bullet_node = ExtResource("2_g2els")
+clone_scale = 0.001
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dqkch")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, -50)
+offset_left = -50.0
+offset_top = 27.0
+offset_right = 50.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_qlg0r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qhqgy")
+
+[node name="PlayerHealth" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, -50)
+offset_left = -50.0
+offset_top = 11.0
+offset_right = 50.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/fill = SubResource("StyleBoxFlat_dqkch")
+value = 100.0
+
+[node name="AmmoLabel" type="Label" parent="."]
+offset_left = 206.0
+offset_top = 157.0
+offset_right = 318.0
+offset_bottom = 180.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tuyoq")
+}
+
+[node name="Idle0" type="Sprite2D" parent="."]
+position = Vector2(4.7683716e-07, -18)
+scale = Vector2(0.038177505, 0.038177505)
+texture = ExtResource("3_qhqgy")
